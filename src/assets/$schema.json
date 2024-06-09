@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "Dynamic Filtering JSON Schema",
+  "definitions": {
+    "field": {
+      "title": "Field filter parameter",
+      "type": "object",
+      "properties": {
+        "field": {
+          "title": "Field name",
+          "type": "string"
+        },
+        "value": {
+          "title": "Field value",
+          "type": "string"
+        }
+      },
+      "required": ["field", "value"]
+    },
+    "query": {
+      "title": "Filter query",
+      "anyOf": [
+        {
+          "title": "Single field filter",
+          "$ref": "#/definitions/field"
+        },
+        {
+          "title": "Multiple field filter",
+          "type": "object",
+          "properties": {
+            "operator": {
+              "title": "Query operator",
+              "type": "string",
+              "enum": ["AND", "OR"]
+            },
+            "parameters": {
+              "title": "Query parameters",
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "$ref": "#/definitions/field"
+                  },
+                  {
+                    "title": "Query filter parameter",
+                    "$ref": "#/definitions/query"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "filters": {
+      "title": "List of dynamic filters",
+      "type": "array",
+      "items": {
+        "title": "Filter",
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Filter name",
+            "type": "string"
+          },
+          "query": {
+            "title": "Filter query",
+            "$ref": "#/definitions/query"
+          }
+        },
+        "required": ["name", "query"]
+      }
+    }
+  }
+}

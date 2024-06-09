@@ -1,0 +1,53 @@
+{
+  "$schema": "./$schema.json",
+  "filters": [
+    {
+      "name": "Open Orders",
+      "query": {
+        "field": "status",
+        "value": "Open"
+      }
+    },
+    {
+      "name": "Open Orders by Type",
+      "query": {
+        "operator": "AND",
+        "parameters": [
+          {
+            "field": "status",
+            "value": "Open"
+          },
+          {
+            "field": "type",
+            "value": "AskUser"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Advanced",
+      "query": {
+        "operator": "AND",
+        "parameters": [
+          {
+            "operator": "OR",
+            "parameters": [
+              {
+                "field": "status",
+                "value": "AskUser"
+              },
+              {
+                "field": "type",
+                "value": "AskUser"
+              }
+            ]
+          },
+          {
+            "field": "startDate",
+            "value": "AskUser"
+          }
+        ]
+      }
+    }
+  ]
+}

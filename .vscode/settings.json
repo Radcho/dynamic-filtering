@@ -1,0 +1,12 @@
+{
+  "editor.formatOnType": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "vs-code-prettier-eslint.prettierLast": false,
+  "eslint.format.enable": true,
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.codeActionsOnSave.rules": null,
+  "files.eol": "\n",
+  "editor.tabSize": 2
+}

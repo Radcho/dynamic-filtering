@@ -1,0 +1,46 @@
+{
+  "$schema": "../$schema.json",
+  "filters": [
+    {
+      "name": "Open Orders",
+      "query": {
+        "field": "status",
+        "value": "Open"
+      }
+    },
+    {
+      "name": "Open Maintenance or Installation Orders",
+      "query": {
+        "operator": "OR",
+        "parameters": [
+          {
+            "operator": "AND",
+            "parameters": [
+              {
+                "field": "status",
+                "value": "Open"
+              },
+              {
+                "field": "type",
+                "value": "Maintenance"
+              }
+            ]
+          },
+          {
+            "operator": "AND",
+            "parameters": [
+              {
+                "field": "status",
+                "value": "Open"
+              },
+              {
+                "field": "type",
+                "value": "Installation"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
